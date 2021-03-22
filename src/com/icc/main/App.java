@@ -3,7 +3,7 @@ package com.icc.main;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner (System.in);
         int choix = 5;
 
@@ -14,9 +14,11 @@ public class App {
         while (choix != 0) {
             myLibrary.showMenu();
 
-            choix = Integer.parseInt(sc.nextLine());
-
-            if (choix <= 4 && choix >= 0) {
+            try {
+                choix = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Veuilliez entrer un nombre !");
+            } finally {
                 switch (choix) {
                     case 0 :
                         sc.close();
@@ -35,9 +37,11 @@ public class App {
                         myLibrary.showStats();
                         break;
                     default:
-
                 }
-            } else System.out.println("Veuilliez entrer un choix valide !");
+            }
+
+
+
         }
 
 

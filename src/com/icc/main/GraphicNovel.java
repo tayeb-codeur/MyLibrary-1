@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class GraphicNovel extends Book{
     private String cartoonist;
-    private String color;
+    private boolean color;
 
-    GraphicNovel(String title, String author, int totelPages, int loanPeriod, int rentalPrice, Date borrowingDate, String language, String cartoonist, String color){
-        super(title, author, totelPages, loanPeriod, rentalPrice, borrowingDate, language);
+    GraphicNovel(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, Date borrowingDate, String language, String cartoonist, boolean color){
+        super(title, author, person, totalPages, loanPeriod, rentalPrice, borrowingDate, language);
         this.cartoonist = cartoonist;
         this.color = color;
     }
@@ -15,6 +15,14 @@ public class GraphicNovel extends Book{
     GraphicNovel() {
         super();
         this.cartoonist = "Cartoonist";
-        this.color = "Black";
+        this.color = false;
+    }
+
+    public void setCartoonist(String cartoonist) {
+        this.cartoonist = cartoonist;
+    }
+
+    public void setColor(boolean color) {
+        this.color = color;
     }
 }
