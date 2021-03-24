@@ -1,7 +1,7 @@
 package com.icc.main;
 
 /**
- * Définit le type de livre
+ * Définit les méthodes de l'algorithme
  * @author Antoine Dieudonné / Ludovic Marigliano
  * @Version 0.1 (24.03.21)
  */
@@ -13,10 +13,25 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
-public class MyLibrary {
-    private String name;
-    private ArrayList<Book> books = new ArrayList<>();
-    private ArrayList<Person> peoples = new ArrayList<Person>();
+	/**
+	 * Contient les méthodes de l'algorithme
+	 * 
+	 * @param 	name - / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / / 
+	 * 			Arraylist books - liste des livres
+	 * 			Arraylist peoples - liste des emprunteurs 
+	 * 
+	 *  @throws ToDo éventuellement ################################################
+	 */
+	
+	public class MyLibrary {
+	    private String name;
+	    private ArrayList<Book> books = new ArrayList<>();
+	    private ArrayList<Person> peoples = new ArrayList<Person>();
+    
+	    
+    /**
+     * Affiche le menu 
+     */
 
     public void showMenu() {
         System.out.println("----------MENU PRINCIPAL----------");
@@ -26,6 +41,12 @@ public class MyLibrary {
         System.out.println("4. Voir les Statistiques de la Bibliothèque");
         System.out.println("0. Quitter");
     }
+    
+    /**
+     * Ajoute un membre
+     * @param Scanner sc / récupère l'entrée au clavier
+     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     */
 
     public void addMember(Scanner sc) throws Exception {
         System.out.println("----------AJOUTER UN MEMBRE----------");
@@ -37,9 +58,14 @@ public class MyLibrary {
 
         peoples.add(tmpPerson);
         System.out.println("Le membre " + tmpPerson.toString() + " a été créé !");
-
-
     }
+    
+    /**
+     * Ajoute un livre en fonction de son type
+     * @param 	Scanner sc / récupère l'entrée au clavier
+     * 			
+     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     */
 
     public void addBook(Scanner sc) throws Exception {
         System.out.println("----------AJOUTER UN LIVRE----------");
@@ -133,6 +159,12 @@ public class MyLibrary {
 
     }
 
+    
+    /**
+     * Enregistre l'emprunt d'un livre par un emprunteur
+     * 			
+     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     */
     public void borrowBook(Scanner sc){
         String inputBorrower;
         String inputBook;
@@ -156,6 +188,11 @@ public class MyLibrary {
 
     }
 
+    /**
+     * Affiche les statistiques / Liste des membres - Liste des livres - Emprunts en cours
+     * 			
+     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     */
     public void showStats(){
         System.out.println("----------STATISTIQUES DE LA BIBLIOTHEQUE----------");
         System.out.println("1. Liste des Membres");

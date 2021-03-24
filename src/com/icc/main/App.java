@@ -1,12 +1,20 @@
 package com.icc.main;
 
 /**
- * Définit le type de livre
+ * Application de l'algorithme complet
  * @author Antoine Dieudonné / Ludovic Marigliano
  * @Version 0.1 (24.03.21)
  */
 
 import java.util.Scanner;
+
+/**
+ * Application de l'algorithme
+ * 
+ * @param 	Scanner sc - récupère l'entrée au clavier
+ * 
+ *  @throws ToDo éventuellement ################################################
+ */
 
 public class App {
     public static void main(String[] args) throws Exception {
