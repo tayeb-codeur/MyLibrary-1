@@ -1,209 +1,192 @@
 package com.icc.main;
 
-/**
- * Définit les méthodes de l'algorithme
- * @author Antoine Dieudonné / Ludovic Marigliano
- * @Version 0.1 (24.03.21)
- */
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
+import java.util.Iterator;
+import java.util.UUID;
+import java.util.StringTokenizer;
 
-	/**
-	 * Contient les méthodes de l'algorithme
-	 * 
-	 * @param 	name - / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / / 
-	 * 			Arraylist books - liste des livres
-	 * 			Arraylist peoples - liste des emprunteurs 
-	 * 
-	 *  @throws ToDo éventuellement ################################################
-	 */
-	
-	public class MyLibrary {
-	    private String name;
-	    private ArrayList<Book> books = new ArrayList<>();
-	    private ArrayList<Person> peoples = new ArrayList<Person>();
-    
-	    
+
+/**
+ * Représente la bibliothèque
+ * Définie par son nom, la liste des membres et la liste des livres.
+ *
+ * @author C. Ruth
+ * @version 0.1
+ * @see Book
+ * @see Person
+ */
+public class MyLibrary {
     /**
-     * Affiche le menu 
+     * Nom de la bibliothèque
      */
+    private String name;
 
-    public void showMenu() {
-        System.out.println("----------MENU PRINCIPAL----------");
-        System.out.println("1. Ajouter un Membre");
-        System.out.println("2. Ajouter un Livre");
-        System.out.println("3. Emprunter un livre");
-        System.out.println("4. Voir les Statistiques de la Bibliothèque");
-        System.out.println("0. Quitter");
+    /**
+     * Liste des livres
+     */
+    private ArrayList<Book> books;
+
+    /**
+     * Liste des membres
+     */
+    private ArrayList<Person> people;
+
+    /**
+     * Crée une bibliothèque en spécifiant son nom
+     *
+     * @param name Nom de la bibliothèque
+     */
+    public MyLibrary(String name) {
+        this.name = name;
+        this.books = new ArrayList<Book>();
+        this.people = new ArrayList<Person>();
     }
-    
+
     /**
-     * Ajoute un membre
-     * @param Scanner sc / récupère l'entrée au clavier
-     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     * Renvoie le nom de la bibliothèque
+     *
+     * @return Le nom de la bibliothèque
      */
-
-    public void addMember(Scanner sc) throws Exception {
-        System.out.println("----------AJOUTER UN MEMBRE----------");
-        Person tmpPerson = new Person();
-        System.out.println("Quel est son Nom ?");
-        tmpPerson.setName(sc.nextLine());
-        System.out.println("Combien de livres peut-il(elle) emprunter ?");
-        tmpPerson.setMaxBooks(Integer.parseInt(sc.nextLine()));
-
-        peoples.add(tmpPerson);
-        System.out.println("Le membre " + tmpPerson.toString() + " a été créé !");
+    public String getName() {
+        return name;
     }
-    
+
     /**
-     * Ajoute un livre en fonction de son type
-     * @param 	Scanner sc / récupère l'entrée au clavier
-     * 			
-     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
+     * Modifie le nom de la bibliothèque
+     *
+     * @param name Nouveau nom de la bibliothèque
      */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void addBook(Scanner sc) throws Exception {
-        System.out.println("----------AJOUTER UN LIVRE----------");
-        System.out.println("De quel genre de livre s'agit-il ?");
-        System.out.println("1. Livre standard");
-        System.out.println("2. Livre Numérique");
-        System.out.println("3. Roman Graphique");
+    /**
+     * Renvoie la liste des livres
+     *
+     * @return la liste des livres
+     */
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
 
-        int bookType = 0;
+    /**
+     * Modifie la liste des livres
+     *
+     * @param books Nouvelle liste des livres
+     */
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
 
-        while (bookType <0 || bookType > 3) {
+    /**
+     * Renvoie la liste des membres
+     *
+     * @return la liste des membres
+     */
+    public ArrayList<Person> getPeople() {
+        return people;
+    }
+
+    /**
+     * Modifie la liste des membres
+     *
+     * @param people Nouvelle liste des membres
+     */
+    public void setPeople(ArrayList<Person> people) {
+        this.people = people;
+    }
+
+    @Override
+    public String toString() {
+        final int maxLen = 3;
+        return "MyLibrary " + name + ": books="
+                + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + ", people="
+                + (people != null ? people.subList(0, Math.min(people.size(), maxLen)) : null);
+    }
+
+    public void addBook(Book book) {
+        this.books.add(book);
+    }
+
+    public void addPerson(Person person) {
+        this.people.add(person);
+    }
+
+    public int printBooks() {
+        int cpt = 0;
+
+        Iterator<Book> it = this.getBooks().iterator();
+
+        while(it.hasNext()) {
+            Book b = it.next();
+
+            System.out.println(++cpt + ": "
+                    +b.getTitle() + " - "
+                    +b.getAuthor());
+        }
+        return cpt;
+    }
+
+    public int printMembers() {
+        int cpt = 0;
+
+        Iterator<Person> itp = this.getPeople().iterator();
+
+        while(itp.hasNext()) {
+            Person p = itp.next();
+
+            System.out.println(++cpt + ": " + p.getName());
+        }
+        return cpt;
+    }
+
+
+    public int loadMembers(String filename) {
+        int cpt = 0;
+
+        File f = new File(filename);
+
+        if(f.exists()) {
+            FileReader fr = null;
+            BufferedReader br = null;
+            String[] data = null;
+
             try {
-                bookType = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Veuillez entrer un nombre entre 1 et 3 !");
-            } finally {
-                switch (bookType) {
-                    case 1:
-                        Book tmpBook = new Book();
-                        System.out.println("Quel est le titre du livre ?");
-                        tmpBook.setTitle(sc.nextLine());
-                        System.out.println("Qui est l'auteur du livre ?");
-                        tmpBook.setAuthor(sc.nextLine());
-                        System.out.println("Combien de page compte le livre ?");
-                        tmpBook.setTotalPages(Integer.parseInt(sc.nextLine()));
-                        System.out.println("En quel langue est le livre ?");
-                        tmpBook.setLanguage(sc.nextLine());
+                try {
+                    fr = new FileReader(f);
+                    br = new BufferedReader(fr);
 
-                        System.out.println("Quelle est la durée d'un emprunt ?");
-                        tmpBook.setLoanPeriod(Integer.parseInt(sc.nextLine()));
-                        System.out.println("Quel est le coût de l'emprunt ?");
-                        tmpBook.setRentalPrice(Integer.parseInt(sc.nextLine()));
+                    //Convertir en objet Person
+                    //StringTokenizer st = new StringTokenizer(ligne, ";");
+                    String ligne = br.readLine();
 
-                        books.add(tmpBook);
+                    //Lire une ligne du fichier
+                    while ((ligne = br.readLine()) != null) {
+                        //"a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20"
+                        data = ligne.split(";");
+                        Person p = new Person(UUID.fromString(data[0]), data[1]);
 
-                        break;
-                    case 2:
-                        OnlineBook tmpOnlineBook = new OnlineBook();
-                        System.out.println("Quel est le titre du livre ?");
-                        tmpOnlineBook.setTitle(sc.nextLine());
-                        System.out.println("Qui est l'auteur du livre ?");
-                        tmpOnlineBook.setAuthor(sc.nextLine());
-                        System.out.println("Combien de page compte le livre ?");
-                        tmpOnlineBook.setTotalPages(Integer.parseInt(sc.nextLine()));
-                        System.out.println("En quel langue est le livre ?");
-                        tmpOnlineBook.setLanguage(sc.nextLine());
-                        System.out.println("Quel est le contenu du livre ?");
-                        tmpOnlineBook.setContent(sc.nextLine());
-
-                        System.out.println("Quelle est la durée d'un emprunt ?");
-                        tmpOnlineBook.setLoanPeriod(Integer.parseInt(sc.nextLine()));
-                        System.out.println("Quel est le coût de l'emprunt ?");
-                        tmpOnlineBook.setRentalPrice(Integer.parseInt(sc.nextLine()));
-                        System.out.println("Combien d'individus peuvent emprunter le livre ?");
-                        tmpOnlineBook.setMaxPeople(Integer.parseInt(sc.nextLine()));
-
-                        books.add(tmpOnlineBook);
-
-                        break;
-                    case 3:
-                        GraphicNovel tmpGraphicNovel = new GraphicNovel();
-                        System.out.println("Quel est le titre du livre ?");
-                        tmpGraphicNovel.setTitle(sc.nextLine());
-                        System.out.println("Qui est l'auteur du livre ?");
-                        tmpGraphicNovel.setAuthor(sc.nextLine());
-                        System.out.println("Qui est le dessinateur du livre ?");
-                        tmpGraphicNovel.setCartoonist(sc.nextLine());
-                        System.out.println("Combien de page compte le livre ?");
-                        tmpGraphicNovel.setTotalPages(Integer.parseInt(sc.nextLine()));
-                        System.out.println("En quel langue est le livre ?");
-                        tmpGraphicNovel.setLanguage(sc.nextLine());
-                        System.out.println("Le livre est-il en couleur ? (O/N)");
-                        tmpGraphicNovel.setColor(Boolean.parseBoolean(sc.nextLine()));
-
-                        System.out.println("Quelle est la durée d'un emprunt ?");
-                        tmpGraphicNovel.setLoanPeriod(Integer.parseInt(sc.nextLine()));
-                        System.out.println("Quel est le coût de l'emprunt ?");
-                        tmpGraphicNovel.setRentalPrice(Integer.parseInt(sc.nextLine()));
-
-                        books.add(tmpGraphicNovel);
-
-                        break;
-                    default:
-
-                }
-            }
-
-        }
-
-
-
-    }
-
-    
-    /**
-     * Enregistre l'emprunt d'un livre par un emprunteur
-     * 			
-     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
-     */
-    public void borrowBook(Scanner sc){
-        String inputBorrower;
-        String inputBook;
-
-        System.out.println("----------EMPRUNTER UN LIVRE----------");
-        System.out.println("Quel est le livre à emprunter ?");
-        inputBook = sc.nextLine();
-        System.out.println("Qui emprunte le livre ?");
-        inputBorrower = sc.nextLine();
-
-        for (Book b : books) {
-            if (b.getTitle() == inputBook) {
-                for (Person p : peoples) {
-                    if (p.getName() == inputBorrower) {
-                        b.setPerson(p);
-                        b.setBorrowingDate(new Date(System.currentTimeMillis()));
+                        //ajouter cette Person dans people
+                        this.people.add(p);
+                        cpt++;
                     }
+                } finally {
+                    br.close();
                 }
+            } catch (IOException e) {
+
             }
+
+            System.out.println(people);
         }
 
-    }
-
-    /**
-     * Affiche les statistiques / Liste des membres - Liste des livres - Emprunts en cours
-     * 			
-     * @throws ToDo # # # # # # # # # # # # # # # # # # # # # #  # # #  # # #  #
-     */
-    public void showStats(){
-        System.out.println("----------STATISTIQUES DE LA BIBLIOTHEQUE----------");
-        System.out.println("1. Liste des Membres");
-        for (Person p : peoples) System.out.println(p.toString());
-        System.out.println("2. Liste des Livres");
-        for (Book b : books) System.out.println(b.toString());
-        System.out.println("3. Emprunts en cours");
-        for (Book b : books) {
-            if (b.getPerson() != null) {
-                System.out.println(b.getTitle() + " a été emprunté le " + b.getBorrowingDate().toString() + " par " + b.getPerson().toString());
-            }
-        }
+        return cpt;
     }
 }
+
+

@@ -6,7 +6,6 @@ package com.icc.main;
  * @Version 0.1 (24.03.21)
  */
 
-import java.util.Date;
 
 public class OnlineBook extends Book{
     private int maxPeople;
@@ -27,11 +26,10 @@ public class OnlineBook extends Book{
      * 			rentalPrice - prix de location
      * 			borrowinDate - date l'emprunt
      * 			language - langue du livre
-     *  @throws ToDo éventuellement ################################################
      */
 
-    OnlineBook(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, Date borrowingDate, String language, int maxPeople, String content){
-        super(title, author, person, totalPages, loanPeriod, rentalPrice, borrowingDate, language);
+    OnlineBook(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, String language, int maxPeople, String content){
+        super(title, author, person, totalPages, loanPeriod, rentalPrice, language);
         this.maxPeople = maxPeople;
         this.content = content;
     }
@@ -47,24 +45,26 @@ public class OnlineBook extends Book{
 
     /**
      * Modifie le / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /
-     * @param Content / / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /
-     * @throws ToDo éventuellement ################################################
+     * @param content / / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /
      */
     public void setContent(String content) {
         this.content = content;
     }
-    
-    
-    // PAS DE getContent ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
+
+
+    public String getContent() {
+        return content;
+    }
 
     /**
      * Modifie le nombre d'emprunteurs maximum
-     * @param MaxPeople / le nombre d'emprunteurs maximum
+     * @param maxPeople / le nombre d'emprunteurs maximum
      */
     public void setMaxPeople(int maxPeople) {
         this.maxPeople = maxPeople;
     }
-    
-    // PAS DE getMaxPeople ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+    public int getMaxPeople() {
+        return maxPeople;
+    }
 }

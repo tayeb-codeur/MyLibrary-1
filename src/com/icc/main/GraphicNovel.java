@@ -27,11 +27,10 @@ public class GraphicNovel extends Book{
      * 			rentalPrice - prix de location
      * 			borrowinDate - date l'emprunt
      * 			language - langue du livre
-     *  @throws ToDo éventuellement ################################################
      */
 
-    GraphicNovel(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, Date borrowingDate, String language, String cartoonist, boolean color){
-        super(title, author, person, totalPages, loanPeriod, rentalPrice, borrowingDate, language);
+    GraphicNovel(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, String language, String cartoonist, boolean color){
+        super(title, author, person, totalPages, loanPeriod, rentalPrice, language);
         this.cartoonist = cartoonist;
         this.color = color;
     }
@@ -47,24 +46,26 @@ public class GraphicNovel extends Book{
 
     /**
      * Modifie le nom du dessinateur
-     * @param Cartoonist / le nom du dessinateur
-     * @throws ToDo éventuellement ################################################
+     * @param cartoonist / le nom du dessinateur
      */
     public void setCartoonist(String cartoonist) {
         this.cartoonist = cartoonist;
     }
-    
-    // PAS DE getCartoonist ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+    public String getCartoonist() {
+        return cartoonist;
+    }
 
     /**
      * Modifie bande dessinée couleur ou non
-     * @param Color / bande dessinée couleur ou non
-     * @throws ToDo éventuellement ################################################
+     * @param color / bande dessinée couleur ou non
      */
     public void setColor(boolean color) {
         this.color = color;
     }
-    
-    // PAS DE getColor ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+    public Boolean getColor() {
+        return color;
+    }
 
 }

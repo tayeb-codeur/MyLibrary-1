@@ -6,41 +6,40 @@ package com.icc.main;
  * @Version 0.1 (24.03.21)
  */
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class Book {
     private String title;
     private String author;
-    private Person person;
+    private String language;
     private int totalPages;
+
     private int loanPeriod;
     private int rentalPrice;
-    private Date borrowingDate;
-    private String language;
+
+    private Person borrower;
+    public LocalDate borrowingDate;
 
     /**
      * Crée un livre et définit son type
      * 
      * @param 	title - Le titre du livre
      * 			author - l'auteur
-     * 			person - la personne qui a emprunté le livre
+     * 			borrower - la personne qui a emprunté le livre
      * 			totalPages - le nombre de pages total
      * 			loanPeriod - période de prêt
      * 			rentalPrice - prix de location
-     * 			borrowinDate - date l'emprunt
      * 			language - langue du livre
-     *  @throws ToDo éventuellement ################################################
      */
     
-    Book (String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, Date borrowingDate, String language) {
+    public Book (String title, String author, Person borrower, int totalPages, int loanPeriod, int rentalPrice, String language) {
         this.title = title;
         this.author = author;
-        this.person = person;
+        this.borrower = borrower;
         this.totalPages = totalPages;
         this.loanPeriod = loanPeriod;
         this.rentalPrice = rentalPrice;
-        this.borrowingDate = borrowingDate;
         this.language = language;
     }
 
@@ -50,11 +49,10 @@ public class Book {
     Book() {
         this.title = "Title";
         this.author = "Author";
-        this.person = null;
+        this.borrower = null;
         this.totalPages = 0;
         this.loanPeriod = 0;
         this.rentalPrice = 0;
-        this.borrowingDate = new Date(System.currentTimeMillis());
         this.language = "French";
     }
 
@@ -64,14 +62,13 @@ public class Book {
      */
     @Override
     public String toString() {
-        return "Titre : " + this.title + " Auteur : " + this.author + "Emprunteur : " + this.person + " Nombre de pages : " + this.totalPages + " Loan Period : " + this.loanPeriod + " Coût : " + this.rentalPrice + " Date d'emprunt : " + this.borrowingDate.toString() + " Langue : " + this.language;
+        return "Titre : " + this.title + " Auteur : " + this.author + "Emprunteur : " + this.borrower + " Nombre de pages : " + this.totalPages + " Loan Period : " + this.loanPeriod + " Coût : " + this.rentalPrice + " Date d'emprunt : " + this.borrowingDate.toString() + " Langue : " + this.language;
     }
 
 
     /**
      * Modifie le titre du livre 
-     * @param Title / Le nouveau titre du livre
-     * @throws ToDo éventuellement ################################################
+     * @param title / Le nouveau titre du livre
      */
     public void setTitle(String title) {
         this.title = title;
@@ -88,103 +85,80 @@ public class Book {
     /**
      * Modifie l'auteur du livre 
      * @param author / Le nouvel auteur du livre
-     * @throws ToDo éventuellement ################################################
      */
     public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
-    // PAS DE getAuthor ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-    
-  
+
+
+    public String getAuthor() {
+        return author;
+    }
+
     /**
      * Modifie le locataire du livre 
-     * @param person / Le nouveau locataire du livre
-     * @throws ToDo éventuellement ################################################
+     * @param borrower / Le nouveau locataire du livre
      */
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setBorrower(Person borrower) {
+        this.borrower = borrower;
     }
 
     /**
      * Renvoi le locataire du livre
      * @return le locataire du livre
      */
-    public Person getPerson() {
-        return person;
+    public Person getBorrower() {
+        return borrower;
     }
 
     /**
      * Modifie le nombre de pages total du livre 
-     * @param TotalPages / Le nouveau nombre de pages totales du livre
-     * @throws ToDo éventuellement ################################################
+     * @param totalPages / Le nouveau nombre de pages totales du livre
      */
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
 
-    
-    
-    // PAS DE getTotalPages ??  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-    
-    
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
     /**
      * Modifie le prix de location du livre
-     * @param RentalPrice / Le nouveu prix de location
-     * @throws ToDo éventuellement ################################################
+     * @param rentalPrice / Le nouveu prix de location
      */
     public void setRentalPrice(int rentalPrice) {
         this.rentalPrice = rentalPrice;
     }
 
-    
-    // PAS DE getRentalPrice ??  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-    
+
+    public int getRentalPrice() {
+        return rentalPrice;
+    }
+
     /**
      * Modifie la période de prêt du livre
-     * @param LoanPeriod / La nouvelle période de prêt du livre
-     * @throws ToDo éventuellement ################################################
+     * @param loanPeriod / La nouvelle période de prêt du livre
      */
     public void setLoanPeriod(int loanPeriod) {
         this.loanPeriod = loanPeriod;
     }
-    
-    
-    // PAS DE getLoanPeriod ??  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-    
-    /**
-     * Modifie la date de l'emprunt
-     * @param BorrowingDate / La nouvelle date de l'emprunt du livre
-     * @throws ToDo éventuellement ################################################
-     */
-    public void setBorrowingDate(Date borrowingDate) {
-        this.borrowingDate = borrowingDate;
-    }
 
-    
-    /**
-     * Renvoi la date de l'emprunt du livre
-     * @return la date de l'emprunt du livre
-     */
-    public Date getBorrowingDate() {
-        return borrowingDate;
+    public int getLoanPeriod() {
+        return loanPeriod;
     }
 
     /**
      * Modifie la langue du livre
-     * @param Language / La nouvelle langue du livre
-     * @throws ToDo éventuellement ################################################
+     * @param language / La nouvelle langue du livre
      */
     public void setLanguage(String language) {
         this.language = language;
     }
-    
-    // PAS DE getLanguage ??  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-   
+
+    public String getLanguage() {
+        return language;
+    }
 }
