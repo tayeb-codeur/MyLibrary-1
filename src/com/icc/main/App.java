@@ -17,7 +17,7 @@ public class App {
             try {
                 choix = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Veuilliez entrer un nombre !");
+                System.out.println("Veulliez entrer un nombre !");
             } finally {
                 switch (choix) {
                     case 0 :
