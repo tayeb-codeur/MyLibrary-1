@@ -1,5 +1,11 @@
 package com.icc.main;
 
+/**
+ * Définit le type de livre
+ * @author Antoine Dieudonné / Ludovic Marigliano
+ * @Version 0.1 (24.03.21)
+ */
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

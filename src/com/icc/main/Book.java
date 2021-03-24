@@ -98,8 +98,7 @@ public class Book {
     // PAS DE getAuthor ??   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     
     
-    
-
+  
     /**
      * Modifie le locataire du livre 
      * @param person / Le nouveau locataire du livre
