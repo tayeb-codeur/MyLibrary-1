@@ -1,7 +1,7 @@
 package com.icc.main;
 
 /**
- * Définit le type de livre
+ * Définit le type d'emprunteur
  * @author Antoine Dieudonné / Ludovic Marigliano
  * @Version 0.1 (24.03.21)
  */
