@@ -1,10 +1,6 @@
 package com.icc.main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.UUID;
@@ -101,6 +97,11 @@ public class MyLibrary {
         this.people = people;
     }
 
+    /**
+     * Renvoie un descriptif du livre sous la forme d'une chaine de caractère
+     *
+     * @return La chaine de caractère contenant les informations du livre
+     */
     @Override
     public String toString() {
         final int maxLen = 3;
@@ -109,14 +110,29 @@ public class MyLibrary {
                 + (people != null ? people.subList(0, Math.min(people.size(), maxLen)) : null);
     }
 
+    /**
+     * Ajoute le livre à la liste des livres de la bibliothèque
+     *
+     * @param book Le livre à ajouter
+     */
     public void addBook(Book book) {
         this.books.add(book);
     }
 
+    /**
+     * Ajoute un membre à la liste des membres de la bibliothèque
+     *
+     * @param person Le membre à ajouter
+     */
     public void addPerson(Person person) {
         this.people.add(person);
     }
 
+    /**
+     * Liste les livres de la bibliothèque et renvoie leur nombre
+     *
+     * @return Le nombre de livres
+     */
     public int printBooks() {
         int cpt = 0;
 
@@ -132,6 +148,11 @@ public class MyLibrary {
         return cpt;
     }
 
+    /**
+     * Liste les membres de la bibliothèque et renvoie leur nombre
+     *
+     * @return Le nombre de membres
+     */
     public int printMembers() {
         int cpt = 0;
 
@@ -145,7 +166,12 @@ public class MyLibrary {
         return cpt;
     }
 
-
+    /**
+     * Recupère les membres contenus dans un fichier CSV
+     *
+     * @param filename Le chemin du fichier CSV
+     * @return Le nombre de membres récupérés
+     */
     public int loadMembers(String filename) {
         int cpt = 0;
 
@@ -187,7 +213,13 @@ public class MyLibrary {
 
         return cpt;
     }
-/*
+
+    /**
+     * Recupère les livres contenus dans un fichier CSV
+     *
+     * @param filename Le chemin du fichier CSV
+     * @return Le nombre de livres récupérés
+     */
     public int loadBooks(String filename) {
         int cpt = 0;
 
@@ -203,17 +235,17 @@ public class MyLibrary {
                     fr = new FileReader(f);
                     br = new BufferedReader(fr);
 
-                    //Convertir en objet Person
+                    //Convertir en objet Book
                     //StringTokenizer st = new StringTokenizer(ligne, ";");
                     String ligne = br.readLine();
 
                     //Lire une ligne du fichier
                     while ((ligne = br.readLine()) != null) {
-                        //"a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20"
-                        data = ligne.split(";");
-                        Book b = new Book(UUID.fromString(data[0]), data[1]);
 
-                        //ajouter cette Person dans people
+                        data = ligne.split(";");
+                        Book b = new Book(data[0], data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), data[5]);
+
+                        //ajouter ce Book dans books
                         this.books.add(b);
                         cpt++;
                     }
@@ -224,13 +256,83 @@ public class MyLibrary {
 
             }
 
-            System.out.println(people);
+            System.out.println(books);
         }
 
         return cpt;
     }
 
-    */
+    /**
+     * Ecrit un fichier CSV contenant les membres de la bibliothèques
+     *
+     * @param filename Le chemin du fichier
+     */
+    public void saveMembers(String filename) {
+        File f = new File(filename);
+
+        if (f.exists()) {
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+
+            try {
+                try {
+                    fw = new FileWriter(f);
+                    bw = new BufferedWriter(fw);
+
+                    for (Person p : people) {
+                        bw.write(p.getId().toString() + ";" + p.getName());
+                        bw.newLine();
+                    }
+
+
+                } finally {
+                    bw.close();
+                }
+
+
+
+            } catch (IOException e) {
+
+            }
+        }
+
+    }
+
+    /**
+     * Ecrit un fichier CSV contenant les livres de la bibliothèque
+     *
+     * @param filename Le chemin du fichier
+     */
+    public void saveBooks(String filename) {
+        File f = new File(filename);
+
+        if (f.exists()) {
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+
+            try {
+                try {
+                    fw = new FileWriter(f);
+                    bw = new BufferedWriter(fw);
+
+                    for (Book b : books) {
+                        bw.write(b.getTitle() + ";" + b.getAuthor() + ";" + b.getTotalPages() + ";" + b.getLoanPeriod() + ";" + b.getRentalPrice() + ";" + b.getLanguage());
+                        bw.newLine();
+                    }
+
+                } finally {
+                    bw.close();
+                }
+
+            } catch (IOException e) {
+
+            }
+        }
+
+
+    }
+
+
 }
 
 
