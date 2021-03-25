@@ -19,6 +19,14 @@ public class Person {
         this.books = new ArrayList<Book>();
     }
 
+    public Person() {
+        this.id = UUID.randomUUID();
+        this.name = "name";
+        this.maxBooks = 3;
+        this.registrationDate = LocalDate.now();
+        this.books = new ArrayList<Book>();
+    }
+
     public String getName() {
         return name;
     }

@@ -101,6 +101,7 @@ public class Book {
      */
     public void setBorrower(Person borrower) {
         this.borrower = borrower;
+        this.borrowingDate = LocalDate.now();
     }
 
     /**
@@ -160,5 +161,9 @@ public class Book {
 
     public String getLanguage() {
         return language;
+    }
+
+    public Integer computeRemainingDays() {
+        return borrowingDate.plusDays((long)this.loanPeriod).compareTo( LocalDate.now());
     }
 }
