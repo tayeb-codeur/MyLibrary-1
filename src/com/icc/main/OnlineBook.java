@@ -1,41 +1,45 @@
 package com.icc.main;
 
 /**
- * Définit le type de livre en ligne
+ * Définit le type de Livre Numérique
  * @author Antoine Dieudonné / Ludovic Marigliano
- * @Version 0.1 (24.03.21)
+ * @Version 0.1
  */
 
 
 public class OnlineBook extends Book{
+
+    /**
+     * Le nombre maximum d'emprunteurs
+     */
     private int maxPeople;
+
+    /**
+     * Le contenu du livre numérique
+     */
     private String content;
     
     /**
-     * Crée un livre en ligne
-     * 
-     * @param 	maxPeople - nom d'emprunteurs maximum
-     * 			content - / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /  
-     * 
-     *  + tous les attributs de la classe mère Book
-     *  		title - Le titre du livre
-     * 			author - l'auteur
-     * 			person - la personne qui a emprunté le livre
-     * 			totalPages - le nombre de pages total
-     * 			loanPeriod - période de prêt
-     * 			rentalPrice - prix de location
-     * 			borrowinDate - date l'emprunt
-     * 			language - langue du livre
+     * Crée un livre numérique
+     *
+     * @param 	title Le titre du livre
+     * @param   author L'auteur
+     * @param 	totalPages Le nombre de pages total
+     * @param 	loanPeriod La durée d'un prêt
+     * @param 	rentalPrice Le prix de location
+     * @param 	language La langue du livre
+     * @param 	maxPeople Nom d'emprunteurs maximum de l'e-Book
+     * @param   content Le contenu du livre numérique
      */
 
-    OnlineBook(String title, String author, Person person, int totalPages, int loanPeriod, int rentalPrice, String language, int maxPeople, String content){
-        super(title, author, person, totalPages, loanPeriod, rentalPrice, language);
+    OnlineBook(String title, String author, int totalPages, int loanPeriod, int rentalPrice, String language, int maxPeople, String content){
+        super(title, author, totalPages, loanPeriod, rentalPrice, language);
         this.maxPeople = maxPeople;
         this.content = content;
     }
 
     /**
-     * Crée un livre en ligne et laisse libre champs à l'utilisateur
+     * Créé un e-Book vierge
      */
     OnlineBook() {
         super();
@@ -44,26 +48,35 @@ public class OnlineBook extends Book{
     }
 
     /**
-     * Modifie le / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /
-     * @param content / / / / / / / / / / / / BESOIN D'AJOUT DE LA DOCUMENTATION / / / / / / / / / / /
+     * Modifie le contenu de l'e-Book
+     * @param content Le contenu de l'e-Book
      */
     public void setContent(String content) {
         this.content = content;
     }
 
-
+    /**
+     * Renvoie le contenu de l'e-Book
+     *
+     * @return Le contenu de l'e-Book
+     */
     public String getContent() {
         return content;
     }
 
     /**
      * Modifie le nombre d'emprunteurs maximum
-     * @param maxPeople / le nombre d'emprunteurs maximum
+     * @param maxPeople Le nombre d'emprunteurs maximum
      */
     public void setMaxPeople(int maxPeople) {
         this.maxPeople = maxPeople;
     }
 
+    /**
+     * Renvoie le nombre d'emprunteurs maximum
+     *
+     * @return Le nombre maximum d'emprunteurs
+     */
     public int getMaxPeople() {
         return maxPeople;
     }

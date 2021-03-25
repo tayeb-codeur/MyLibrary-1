@@ -187,6 +187,50 @@ public class MyLibrary {
 
         return cpt;
     }
+/*
+    public int loadBooks(String filename) {
+        int cpt = 0;
+
+        File f = new File(filename);
+
+        if(f.exists()) {
+            FileReader fr = null;
+            BufferedReader br = null;
+            String[] data = null;
+
+            try {
+                try {
+                    fr = new FileReader(f);
+                    br = new BufferedReader(fr);
+
+                    //Convertir en objet Person
+                    //StringTokenizer st = new StringTokenizer(ligne, ";");
+                    String ligne = br.readLine();
+
+                    //Lire une ligne du fichier
+                    while ((ligne = br.readLine()) != null) {
+                        //"a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20"
+                        data = ligne.split(";");
+                        Book b = new Book(UUID.fromString(data[0]), data[1]);
+
+                        //ajouter cette Person dans people
+                        this.books.add(b);
+                        cpt++;
+                    }
+                } finally {
+                    br.close();
+                }
+            } catch (IOException e) {
+
+            }
+
+            System.out.println(people);
+        }
+
+        return cpt;
+    }
+
+    */
 }
 
 

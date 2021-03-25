@@ -1,42 +1,68 @@
 package com.icc.main;
 
-/**
- * Définit le type de livre
- * @author Antoine Dieudonné / Ludovic Marigliano
- * @Version 0.1 (24.03.21)
- */
-
 import java.time.LocalDate;
 
+/**
+ * Définit la classe Book (un livre de la bibliothèque)
+ * @author Antoine Dieudonné / Ludovic Marigliano
+ * @Version 0.1
+ */
 
 public class Book {
+    /**
+     * Le titre du livre
+     */
     private String title;
+
+    /**
+     * Le nom de l'auteur
+     */
     private String author;
+
+    /**
+     * La langue du livre
+     */
     private String language;
+
+    /**
+     * Le nombre de pages du livre
+     */
     private int totalPages;
 
+    /**
+     * La durée d'un emprunt du livre
+     */
     private int loanPeriod;
+
+    /**
+     * Le prix d'un emprunt du livre
+     */
     private int rentalPrice;
 
+    /**
+     * L'emprunteur du livre
+     */
     private Person borrower;
+
+    /**
+     * La date d'emprunt du livre
+     */
     public LocalDate borrowingDate;
 
     /**
      * Crée un livre et définit son type
-     * 
-     * @param 	title - Le titre du livre
-     * 			author - l'auteur
-     * 			borrower - la personne qui a emprunté le livre
-     * 			totalPages - le nombre de pages total
-     * 			loanPeriod - période de prêt
-     * 			rentalPrice - prix de location
-     * 			language - langue du livre
+     *
+     * @param 	title Le titre du livre
+     * @param   author L'auteur
+     * @param 	totalPages Le nombre de pages total
+     * @param 	loanPeriod La durée d'un prêt
+     * @param 	rentalPrice Le prix de location
+     * @param 	language La langue du livre
      */
     
-    public Book (String title, String author, Person borrower, int totalPages, int loanPeriod, int rentalPrice, String language) {
+    public Book (String title, String author, int totalPages, int loanPeriod, int rentalPrice, String language) {
         this.title = title;
         this.author = author;
-        this.borrower = borrower;
         this.totalPages = totalPages;
         this.loanPeriod = loanPeriod;
         this.rentalPrice = rentalPrice;
@@ -44,21 +70,21 @@ public class Book {
     }
 
     /**
-     * Crée un livre et laisse libre champs à l'utilisateur
+     * Crée un livre vierge
      */
     Book() {
-        this.title = "Title";
-        this.author = "Author";
+        this.title = "Unknown Title";
+        this.author = "Unknown Author";
         this.borrower = null;
         this.totalPages = 0;
         this.loanPeriod = 0;
         this.rentalPrice = 0;
-        this.language = "French";
+        this.language = "Unknown language";
     }
 
 
     /**
-     * @return toString de la classe Book
+     * @return Descriptif d'un livre
      */
     @Override
     public String toString() {
@@ -67,37 +93,45 @@ public class Book {
 
 
     /**
-     * Modifie le titre du livre 
-     * @param title / Le nouveau titre du livre
+     * Modifie le titre du livre
+     *
+     * @param title Le nouveau titre du livre
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Renvoi le titre du livre
-     * @return le titre du livre
+     * Renvoie le titre du livre
+     *
+     * @return Le titre du livre
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Modifie l'auteur du livre 
-     * @param author / Le nouvel auteur du livre
+     * Modifie l'auteur du livre
+     *
+     * @param author Le nouvel auteur du livre
      */
     public void setAuthor(String author) {
         this.author = author;
     }
 
-
+    /**
+     * Renvoie l'auteur du livre
+     *
+      * @return L'auteur du livre
+     */
     public String getAuthor() {
         return author;
     }
 
     /**
-     * Modifie le locataire du livre 
-     * @param borrower / Le nouveau locataire du livre
+     * Modifie l'emprunteur du livre
+     *
+     * @param borrower Le nouvel emprunteur du livre
      */
     public void setBorrower(Person borrower) {
         this.borrower = borrower;
@@ -105,65 +139,93 @@ public class Book {
     }
 
     /**
-     * Renvoi le locataire du livre
-     * @return le locataire du livre
+     * Renvoie l'emprunteur du livre
+     *
+     * @return L'emprunteur du livre
      */
     public Person getBorrower() {
         return borrower;
     }
 
     /**
-     * Modifie le nombre de pages total du livre 
-     * @param totalPages / Le nouveau nombre de pages totales du livre
+     * Modifie le nombre de pages total du livre
+     *
+     * @param totalPages Le nouveau nombre de pages total du livre
      */
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
 
 
+    /**
+     * Renvoie le nombre de pages du livre
+     *
+     * @return Le nombre total de pages
+     */
     public int getTotalPages() {
         return totalPages;
     }
 
     /**
-     * Modifie le prix de location du livre
-     * @param rentalPrice / Le nouveu prix de location
+     * Modifie le prix d'emprunt du livre
+     *
+     * @param rentalPrice Le nouveu prix de l'emprunt
      */
     public void setRentalPrice(int rentalPrice) {
         this.rentalPrice = rentalPrice;
     }
 
-
+    /**
+     * Renvoie le prix d'emprunt du livre
+     *
+     * @return Le prix d'emprunt
+     */
     public int getRentalPrice() {
         return rentalPrice;
     }
 
     /**
      * Modifie la période de prêt du livre
-     * @param loanPeriod / La nouvelle période de prêt du livre
+     *
+     * @param loanPeriod La nouvelle période de prêt du livre
      */
     public void setLoanPeriod(int loanPeriod) {
         this.loanPeriod = loanPeriod;
     }
 
-
+    /**
+     * Renvoie la période d'un prêt du livre
+     *
+     * @return La durée d'un emprunt
+     */
     public int getLoanPeriod() {
         return loanPeriod;
     }
 
     /**
      * Modifie la langue du livre
-     * @param language / La nouvelle langue du livre
+     *
+     * @param language La nouvelle langue du livre
      */
     public void setLanguage(String language) {
         this.language = language;
     }
 
+    /**
+     * Renvoie le langue du livre
+     *
+     * @return La langue du livre
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     * Calcule la difference de jours entre la date d'emprunt et la date actuelle
+     *
+     * @return La difference de jours
+     */
     public Integer computeRemainingDays() {
-        return borrowingDate.plusDays((long)this.loanPeriod).compareTo( LocalDate.now());
+        return borrowingDate.plusDays((long)this.loanPeriod).compareTo(LocalDate.now());
     }
 }

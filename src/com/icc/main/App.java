@@ -1,5 +1,6 @@
 package com.icc.main;
 
+import java.lang.invoke.SwitchPoint;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -7,9 +8,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         MyLibrary myLibrary = new MyLibrary("BiblioICC");
-        int choix = 5;
+        int choixMenu = 5;
 
-        while (choix != 0) {
+        while (choixMenu != 0) {
             System.out.println("===== MENU PRINCIPAL =====");
             System.out.println("1. Ajouter un membre");
             System.out.println("2. Ajouter un livre");
@@ -18,12 +19,12 @@ public class App {
             System.out.println("0. Quitter le programme");
 
             try {
-                choix = Integer.parseInt(sc.nextLine());
+                choixMenu = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Veuillez entrer un nombre !");
             }
 
-            switch (choix) {
+            switch (choixMenu) {
                 case 1:
                     System.out.println("===== NOUVEAU MEMBRE =====");
                     Person tmpPerson = new Person();
@@ -43,6 +44,148 @@ public class App {
                     break;
                 case 2:
                     System.out.println("===== NOUVEAU LIVRE =====");
+                    System.out.println("1. Livre standard");
+                    System.out.println("2. Livre Numérique");
+                    System.out.println("3. Roman Graphique");
+
+                    int choixNvxLivre = 5;
+                    try {
+                        Integer.parseInt(sc.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Veuillez entrer un choix valide !");
+                    }
+
+                    switch (choixNvxLivre) {
+                        case 1:
+                            Book tmpBook = new Book();
+
+                            System.out.println("Quel est le titre du livre ?");
+                            tmpBook.setTitle(sc.nextLine());
+
+                            System.out.println("Quel est l'auteur du livre ?");
+                            tmpBook.setAuthor(sc.nextLine());
+
+                            System.out.println("Quelle est la langue du livre ?");
+                            tmpBook.setLanguage(sc.nextLine());
+
+                            System.out.println("Quel est le nombre de pages du livre ?");
+                            try {
+                                tmpBook.setTotalPages(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est la durée d'un emprunt de ce livre ?");
+                            try {
+                                tmpBook.setLoanPeriod(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est le prix d'un emprunt de ce livre ?");
+                            try {
+                                tmpBook.setRentalPrice(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            myLibrary.addBook(tmpBook);
+                            System.out.println("Le livre " + tmpBook.getTitle() + " a été ajouté à la liste des livres !");
+
+                            break;
+                        case 2:
+                            OnlineBook tmpOnlineBook = new OnlineBook();
+
+                            System.out.println("Quel est le titre du livre ?");
+                            tmpOnlineBook.setTitle(sc.nextLine());
+
+                            System.out.println("Quel est l'auteur du livre ?");
+                            tmpOnlineBook.setAuthor(sc.nextLine());
+
+                            System.out.println("Quelle est la langue du livre ?");
+                            tmpOnlineBook.setLanguage(sc.nextLine());
+
+                            System.out.println("Quel est le contenu du livre ?");
+                            tmpOnlineBook.setContent(sc.nextLine());
+
+                            System.out.println("Quel est le nombre de pages du livre ?");
+                            try {
+                                tmpOnlineBook.setTotalPages(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est la durée d'un emprunt de ce livre ?");
+                            try {
+                                tmpOnlineBook.setLoanPeriod(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est le prix d'un emprunt de ce livre ?");
+                            try {
+                                tmpOnlineBook.setRentalPrice(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Combien de personnes peuvent emprunter ce livre ?");
+                            try {
+                                tmpOnlineBook.setMaxPeople(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            myLibrary.addBook(tmpOnlineBook);
+                            System.out.println("Le livre " + tmpOnlineBook.getTitle() + " a été ajouté à la liste des livres !");
+
+                            break;
+                        case 3:
+                            GraphicNovel tmpGraphicNovel = new GraphicNovel();
+
+                            System.out.println("Quel est le titre du livre ?");
+                            tmpGraphicNovel.setTitle(sc.nextLine());
+
+                            System.out.println("Quel est l'auteur du livre ?");
+                            tmpGraphicNovel.setAuthor(sc.nextLine());
+
+                            System.out.println("Qui est le dessinateur du livre ?");
+                            tmpGraphicNovel.setCartoonist(sc.nextLine());
+
+                            System.out.println("Quelle est la langue du livre ?");
+                            tmpGraphicNovel.setLanguage(sc.nextLine());
+
+                            System.out.println("Le livre est-il en couleurs ? (yes/no)");
+                            tmpGraphicNovel.setColor(Boolean.parseBoolean(sc.nextLine()));
+
+                            System.out.println("Quel est le nombre de pages du livre ?");
+                            try {
+                                tmpGraphicNovel.setTotalPages(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est la durée d'un emprunt de ce livre ?");
+                            try {
+                                tmpGraphicNovel.setLoanPeriod(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            System.out.println("Quel est le prix d'un emprunt de ce livre ?");
+                            try {
+                                tmpGraphicNovel.setRentalPrice(Integer.parseInt(sc.nextLine()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Veuillez entrer une valeur valide !");
+                            }
+
+                            myLibrary.addBook(tmpGraphicNovel);
+                            System.out.println("Le livre " + tmpGraphicNovel.getTitle() + " a été ajouté à la liste des livres !");
+
+                            break;
+                        default:
+                    }
+
                     break;
                 case 3:
                     System.out.println("===== NOUVEL EMPRUNT =====");
