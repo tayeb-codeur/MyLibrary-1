@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        MyLibrary myLibrary = new MyLibrary();
+        MyLibrary myLibrary = new MyLibrary("BiblioICC");
         int choix = 5;
 
         while (choix != 0) {
@@ -117,7 +117,7 @@ public class App {
 
                     for (Book b : myLibrary.getBooks()) {
                         if (b instanceof OnlineBook) {
-                            nbrOnlineBooks++
+                            nbrOnlineBooks++;
                         } else if (b instanceof GraphicNovel) {
                             nbrGraphicNovels++;
                         }
