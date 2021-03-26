@@ -22,11 +22,8 @@ public class App {
             
             try {
             	choixMenu = Integer.parseInt(sc.nextLine());
-            	if (choixMenu < 0 || choixMenu > 4) {
-            		System.out.println("Veuillez entrer un nombre entre 0 et 4 !");
-            	}
             } catch (NumberFormatException e) {
-            	System.out.println("Veuillez entrer un nombre entre 0 et 4 !");
+            	System.out.println("Veuillez entrer une valeur valide !");
             }
           
         
@@ -290,7 +287,7 @@ public class App {
                     System.exit(0);
                     break;
                 default:
-
+                    System.out.println("Veuillez entrer un nombre entre 0 et 4 !");
             }
            
         }
