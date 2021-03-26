@@ -17,13 +17,19 @@ public class App {
             System.out.println("3. Emprunter un livre");
             System.out.println("4. Voir les statistiques");
             System.out.println("0. Quitter le programme");
-
+            
+        
+            
             try {
-                choixMenu = Integer.parseInt(sc.nextLine());
+            	choixMenu = Integer.parseInt(sc.nextLine());
+            	if (choixMenu < 0 || choixMenu > 4) {
+            		System.out.println("Veuillez entrer un nombre entre 0 et 4 !");
+            	}
             } catch (NumberFormatException e) {
-                System.out.println("Veuillez entrer un nombre !");
+            	System.out.println("Veuillez entrer un nombre entre 0 et 4 !");
             }
-
+          
+        
             switch (choixMenu) {
                 case 1:
                     System.out.println("===== NOUVEAU MEMBRE =====");
@@ -286,6 +292,7 @@ public class App {
                 default:
 
             }
+           
         }
     }
 }
