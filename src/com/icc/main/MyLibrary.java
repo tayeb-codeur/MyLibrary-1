@@ -270,7 +270,6 @@ public class MyLibrary {
     public void saveMembers(String filename) {
         File f = new File(filename);
 
-        if (f.exists()) {
             FileWriter fw = null;
             BufferedWriter bw = null;
 
@@ -284,19 +283,17 @@ public class MyLibrary {
                         bw.newLine();
                     }
 
-
                 } finally {
                     bw.close();
                 }
-
-
-
             } catch (IOException e) {
-
+                System.out.println("IOException pour people");
             }
-        }
 
     }
+
+
+
 
     /**
      * Ecrit un fichier CSV contenant les livres de la bibliothèque
@@ -306,27 +303,25 @@ public class MyLibrary {
     public void saveBooks(String filename) {
         File f = new File(filename);
 
-        if (f.exists()) {
-            FileWriter fw = null;
-            BufferedWriter bw = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
 
+        try {
             try {
-                try {
-                    fw = new FileWriter(f);
-                    bw = new BufferedWriter(fw);
+                fw = new FileWriter(f);
+                bw = new BufferedWriter(fw);
 
-                    for (Book b : books) {
-                        bw.write(b.getTitle() + ";" + b.getAuthor() + ";" + b.getTotalPages() + ";" + b.getLoanPeriod() + ";" + b.getRentalPrice() + ";" + b.getLanguage());
-                        bw.newLine();
-                    }
-
-                } finally {
-                    bw.close();
+                for (Book b : books) {
+                    bw.write(b.getTitle() + ";" + b.getAuthor() + ";" + b.getTotalPages() + ";" + b.getLoanPeriod() + ";" + b.getRentalPrice() + ";" + b.getLanguage());
+                    bw.newLine();
                 }
 
-            } catch (IOException e) {
-
+            } finally {
+                bw.close();
             }
+
+        } catch (IOException e) {
+
         }
 
 
