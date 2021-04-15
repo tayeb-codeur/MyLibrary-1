@@ -114,8 +114,8 @@ public class Person {
      *
      * @param id l'ID du membre
      */
-    public void setId(UUID id) {
-        this.id = id;
+    /*public void setId(UUID id) {
+        this.id = id;*/
     }
 
     /**
