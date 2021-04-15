@@ -4,6 +4,7 @@ import Metier.*;
 import DaoLibrary.*;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,17 +14,17 @@ public class App {
         System.out.println(myLibrary.loadBooks("data/books.csv", myLibrary.getBooks()) + " livres chargés...");
         System.out.println(myLibrary.loadMembers("data/members.csv", myLibrary.getPeople()) + " membres chargés...");
         int choixMenu = 5;
+        String nouveauMembre = null;
 
         while (choixMenu != 0) {
-            System.out.println("===== MENU PRINCIPAL =====");
-            System.out.println("1. Ajouter un membre");
-            System.out.println("2. Ajouter un livre");
-            System.out.println("3. Emprunter un livre");
-            System.out.println("4. Voir les statistiques");
-            System.out.println("0. Quitter le programme");
+            System.out.println("\t\t\t\t\t\t===== MENU PRINCIPAL =====");
+            System.out.println("1. Ajouter un membre - 2. Ajouter un livre - 3. Emprunter un livre - "
+            		+ " 4. Voir les statistiques - 0. Quitter le programme");
+            System.out.println();
 
             try {
-            	choixMenu = Integer.parseInt(sc.nextLine());
+            	//choixMenu = Integer.parseInt(sc.nextLine());
+            	choixMenu = sc.nextInt();
             } catch (NumberFormatException e) {
             	System.out.println("Veuillez entrer une valeur valide !");
             }
@@ -32,9 +33,14 @@ public class App {
             switch (choixMenu) {
                 case 1:
                     System.out.println("===== NOUVEAU MEMBRE =====");
-                    Person tmpPerson = new Person();
-                    System.out.println("Quel est le nom du membre ?");
-                    tmpPerson.setName(sc.nextLine());
+                    System.out.print("Entrer le nom du membre : ");
+                    nouveauMembre = sc.next();
+                    // UUID.randomUUID() generé un identifiant automatique 
+                    Person tmpPerson = new Person(UUID.randomUUID(),nouveauMembre); 
+                    System.out.println("le nom du nouveau membre : " + tmpPerson.getName());
+                    System.out.println();
+                    System.out.println("**************************************************");
+                    System.out.println();
                     System.out.println("Combien de livres le membre peut-il emprunter ?");
 
                     try {
