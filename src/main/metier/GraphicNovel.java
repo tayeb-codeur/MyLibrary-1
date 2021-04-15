@@ -1,4 +1,4 @@
-package com.icc.main;
+package main.metier;
 
 /**
  * Définit le type de Roman Graphique
@@ -7,7 +7,7 @@ package com.icc.main;
  */
 
 
-public class GraphicNovel extends Book{
+public class GraphicNovel extends Book {
     /**
      * Le nom du dessinateur du roman graphique
      */
@@ -40,7 +40,7 @@ public class GraphicNovel extends Book{
     /**
      * Crée une bande dessinée vierge
      */
-    GraphicNovel() {
+    public GraphicNovel() {
         super();
         this.cartoonist = "Cartoonist";
         this.color = false;

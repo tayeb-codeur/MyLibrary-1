@@ -1,13 +1,17 @@
-package com.icc.main;
+package main.ui;
 
-import java.lang.invoke.SwitchPoint;
-import java.time.LocalDate;
+import main.metier.*;
+import main.dao.*;
+
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         MyLibrary myLibrary = new MyLibrary("BiblioICC");
+        System.out.println("Chargement de la bibliothèque...");
+        System.out.println(myLibrary.loadBooks("data/books.csv", myLibrary.getBooks()) + " livres chargés...");
+        System.out.println(myLibrary.loadMembers("data/members.csv", myLibrary.getPeople()) + " membres chargés...");
         int choixMenu = 5;
 
         while (choixMenu != 0) {
@@ -17,9 +21,7 @@ public class App {
             System.out.println("3. Emprunter un livre");
             System.out.println("4. Voir les statistiques");
             System.out.println("0. Quitter le programme");
-            
-        
-            
+
             try {
             	choixMenu = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
@@ -65,7 +67,7 @@ public class App {
                             System.out.println("Quel est le titre du livre ?");
                             tmpBook.setTitle(sc.nextLine());
 
-                            System.out.println("Quel est l'auteur du livre ?");
+                            System.out.println("Qui est l'auteur du livre ?");
                             tmpBook.setAuthor(sc.nextLine());
 
                             System.out.println("Quelle est la langue du livre ?");
@@ -102,7 +104,7 @@ public class App {
                             System.out.println("Quel est le titre du livre ?");
                             tmpOnlineBook.setTitle(sc.nextLine());
 
-                            System.out.println("Quel est l'auteur du livre ?");
+                            System.out.println("Qui est l'auteur du livre ?");
                             tmpOnlineBook.setAuthor(sc.nextLine());
 
                             System.out.println("Quelle est la langue du livre ?");
@@ -149,7 +151,7 @@ public class App {
                             System.out.println("Quel est le titre du livre ?");
                             tmpGraphicNovel.setTitle(sc.nextLine());
 
-                            System.out.println("Quel est l'auteur du livre ?");
+                            System.out.println("Qui est l'auteur du livre ?");
                             tmpGraphicNovel.setAuthor(sc.nextLine());
 
                             System.out.println("Qui est le dessinateur du livre ?");

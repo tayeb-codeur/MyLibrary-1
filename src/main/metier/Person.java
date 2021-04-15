@@ -1,4 +1,6 @@
-package com.icc.main;
+package main.metier;
+
+import main.metier.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.icc.main;
+package main.metier;
 
 import java.time.LocalDate;
 
@@ -72,7 +72,7 @@ public class Book {
     /**
      * Crée un livre vierge
      */
-    Book() {
+    public Book() {
         this.title = "Unknown Title";
         this.author = "Unknown Author";
         this.borrower = null;
@@ -81,16 +81,6 @@ public class Book {
         this.rentalPrice = 0;
         this.language = "Unknown language";
     }
-
-
-    /**
-     * @return Descriptif d'un livre
-     */
-    @Override
-    public String toString() {
-        return "Titre : " + this.title + " Auteur : " + this.author + "Emprunteur : " + this.borrower + " Nombre de pages : " + this.totalPages + " Loan Period : " + this.loanPeriod + " Coût : " + this.rentalPrice + " Date d'emprunt : " + this.borrowingDate.toString() + " Langue : " + this.language;
-    }
-
 
     /**
      * Modifie le titre du livre
@@ -228,4 +218,13 @@ public class Book {
     public Integer computeRemainingDays() {
         return borrowingDate.plusDays((long)this.loanPeriod).compareTo(LocalDate.now());
     }
+
+    /**
+     * @return Descriptif d'un livre
+     */
+    @Override
+    public String toString() {
+        return "Titre : " + this.title + " Auteur : " + this.author + "Emprunteur : " + this.borrower + " Nombre de pages : " + this.totalPages + " Loan Period : " + this.loanPeriod + " Coût : " + this.rentalPrice + " Date d'emprunt : " + this.borrowingDate.toString() + " Langue : " + this.language;
+    }
+
 }

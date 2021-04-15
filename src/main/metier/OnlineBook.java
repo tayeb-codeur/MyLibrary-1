@@ -1,4 +1,4 @@
-package com.icc.main;
+package main.metier;
 
 /**
  * Définit le type de Livre Numérique
@@ -7,7 +7,7 @@ package com.icc.main;
  */
 
 
-public class OnlineBook extends Book{
+public class OnlineBook extends Book {
 
     /**
      * Le nombre maximum d'emprunteurs
@@ -41,7 +41,7 @@ public class OnlineBook extends Book{
     /**
      * Créé un e-Book vierge
      */
-    OnlineBook() {
+    public OnlineBook() {
         super();
         this.maxPeople = 0;
         this.content = "Unknown";
