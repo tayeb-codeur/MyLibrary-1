@@ -1,5 +1,6 @@
 package DaoLibrary;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -7,10 +8,12 @@ import java.util.UUID;
 public class Person {
 	protected UUID id;
 	private String name;
-	private byte maxBooks;
+	private int maxBooks;
 	private LocalDate registrationDate;
 	private ArrayList<Book> books;
 	
+	public Person(){}
+	// 1constructeur avec paramter surcharge 
 	public Person(UUID id, String name) {
 		this.id = id;
 		this.name =name;
@@ -18,7 +21,13 @@ public class Person {
 		this.registrationDate = LocalDate.now();
 		this.books = new ArrayList<Book>();
 	}
-	
+	// 2 surchage
+	 public Person(String name, int maxBooks, LocalDate registrationDate) {
+		 this.name= name;
+		 this.maxBooks = maxBooks;
+		 this.registrationDate = registrationDate;
+	 }
+	 
 	
 	public UUID getId() {
 		return id;
@@ -39,7 +48,7 @@ public class Person {
 		this.maxBooks = maxBooks;
 	}
 
-	public byte getMaxBooks() {
+	public int getMaxBooks() {
 		return maxBooks;
 	}
 
@@ -68,9 +77,4 @@ public class Person {
 		this.books = books;
 	}
 
-
-	public static void main(String[] args) {
-		
-		
-		}
 }

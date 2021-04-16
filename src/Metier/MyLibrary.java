@@ -1,12 +1,14 @@
 package Metier;
 
 import DaoLibrary.Book;
+import DaoLibrary.DaoLibrary;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import DaoLibrary.Person;
 
-public class MyLibrary {
+public class MyLibrary implements DaoLibrary {
 
 	private String name;
 	private ArrayList<Book> books;

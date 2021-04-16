@@ -1,7 +1,8 @@
 package DaoLibrary;
 
+
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 public class Book {
 	
@@ -9,25 +10,12 @@ public class Book {
 	private String author;
 	private int totalPage;
 	private int loanPeriod;
-	private int rentalPrice;
+	private double rentalPrice;
 	private Person borrower;
 	private String language;
 	private LocalDate borrowingDate ;	
 	
-	
-	
-	public Book(String title, String author, int totalPage, int loanPeriod, int rentalPrice, String language) {
-		super();
-		this.title = title;
-		this.author = author;
-		this.totalPage = totalPage;
-		this.loanPeriod = loanPeriod;
-		this.rentalPrice = rentalPrice;
-		this.language = language;
-	}
-
-
-
+	// constructeur sans parametre
 	public Book() {
         this.title = "Unknown Title";
         this.author = "Unknown Author";
@@ -37,8 +25,30 @@ public class Book {
         this.rentalPrice = 0;
         this.language = "Unknown language";
     }
-	
-	
+	 // constructeur surcharge avec parametre
+	public Book(String title, String author, int totalPage, int loanPeriod, double rentalPrice, String language) {
+		this.title = title;
+		this.author = author;
+		this.totalPage = totalPage;
+		this.loanPeriod = loanPeriod;
+		this.rentalPrice = rentalPrice;
+		this.language = language;
+	}
+	// constructeur surcharge  avec parametre  
+	public Book(String title, String author, int totalPage, Person borrower, int loanPeriod, double rentalPrice,
+			LocalDate borrowingDate, String language) {
+		this.title = title;
+		this.author = author;
+		this.totalPage = totalPage;
+		this.borrower = borrower;
+		this.loanPeriod = loanPeriod;
+		this.rentalPrice = rentalPrice;
+		this.borrowingDate = borrowingDate;
+		this.language = language;
+
+	}
+
+
 
 	public String getTitle() {
 		return title;
@@ -79,7 +89,7 @@ public class Book {
 	}
 
 
-	public int getRentalPrice() {
+	public double getRentalPrice() {
 		return rentalPrice;
 	}
 
@@ -127,8 +137,8 @@ public class Book {
 				+ getLoanPeriod() + ", getRentalPrice()=" + getRentalPrice() + ", getLanguage()=" + getLanguage() + "]";
 	}
 	 
-	public static void  main (String []args) {
+	/*public static void  main (String []args) {
 		Book book = new Book();
 		System.out.println(book.toString());
-	}
+	}*/
 }

@@ -12,6 +12,11 @@ public interface DaoLibrary {
 	 * @param filename Le chemin du fichier CSV
 	 * @return Le nombre de membres récupérés
 	 */
+	/**
+	 * @param filename
+	 * @param people
+	 * @return
+	 */
 	public default int loadMembers(String filename, ArrayList<Person> people) {
 		int cpt = 0;
 
@@ -34,6 +39,7 @@ public interface DaoLibrary {
 					// Lire une ligne du fichier
 					while ((ligne = br.readLine()) != null) {
 						// "a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20"
+						// split : divise  ";" --->séparteur  
 						data = ligne.split(";");
 						Person p = new Person(UUID.fromString(data[0]), data[1]);
 
@@ -83,8 +89,7 @@ public interface DaoLibrary {
 					while ((ligne = br.readLine()) != null) {
 
 						data = ligne.split(";");
-						// Book(String title, String author, int totalPage, int loanPeriod, int
-						// rentalPrice, String language)
+						
 						Book b = new Book(data[0], data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]),
 								Integer.parseInt(data[4]), data[5]);
 

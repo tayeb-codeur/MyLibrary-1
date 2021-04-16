@@ -15,12 +15,13 @@ public class App {
         System.out.println(myLibrary.loadMembers("data/members.csv", myLibrary.getPeople()) + " membres chargés...");
         int choixMenu = 5;
         String nouveauMembre = null;
+        String combienLivres;
 
         while (choixMenu != 0) {
             System.out.println("\t\t\t\t\t\t===== MENU PRINCIPAL =====");
             System.out.println("1. Ajouter un membre - 2. Ajouter un livre - 3. Emprunter un livre - "
             		+ " 4. Voir les statistiques - 0. Quitter le programme");
-            System.out.println();
+            System.out.println("***********************************************************************************");
 
             try {
             	//choixMenu = Integer.parseInt(sc.nextLine());
@@ -40,16 +41,20 @@ public class App {
                     System.out.println("le nom du nouveau membre : " + tmpPerson.getName());
                     System.out.println();
                     System.out.println("**************************************************");
-                    System.out.println();
+                    System.out.println("--------------------------------------------------");
                     System.out.println("Combien de livres le membre peut-il emprunter ?");
+                   
+                    
 
                     try {
                         tmpPerson.setMaxBooks(Byte.parseByte(sc.nextLine()));
                     } catch (NumberFormatException e) {
-                        System.out.println("La valeur entrée est invalide !");
+                    	System.out.println("La valeur entrée est invalide !");
+                        
                     }
-
+//
                     myLibrary.addPerson(tmpPerson);
+                    combienLivres = sc.next();
                     System.out.println("Le membre " + tmpPerson.getName() + " pouvant emprunter " + tmpPerson.getMaxBooks() + " livres a été créé !");
 
                     break;
@@ -61,15 +66,19 @@ public class App {
 
                     int choixNvxLivre = 5;
                     try {
-                        Integer.parseInt(sc.nextLine());
+                        //Integer.parseInt(sc.nextLine());
+                        choixMenu = sc.nextInt();
                     } catch (NumberFormatException e) {
+                    	//
+                    	combienLivres = sc.next( );
                         System.out.println("Veuillez entrer un choix valide !");
                     }
 
                     switch (choixNvxLivre) {
                         case 1:
-                            Book tmpBook = new Book();
-
+                        	choixMenu = sc.nextInt();                       
+                            Book tmpBook= new Book();
+                            
                             System.out.println("Quel est le titre du livre ?");
                             tmpBook.setTitle(sc.nextLine());
 
@@ -101,12 +110,14 @@ public class App {
                             }
 
                             myLibrary.addBook(tmpBook);
+                            choixMenu = sc.nextInt();
                             System.out.println("Le livre " + tmpBook.getTitle() + " a été ajouté à la liste des livres !");
 
                             break;
                         case 2:
                             OnlineBook tmpOnlineBook = new OnlineBook();
-
+                            //
+                            choixMenu = sc.nextInt();
                             System.out.println("Quel est le titre du livre ?");
                             tmpOnlineBook.setTitle(sc.nextLine());
 
@@ -148,6 +159,9 @@ public class App {
                             }
 
                             myLibrary.addBook(tmpOnlineBook);
+                            
+                            //
+                            choixMenu = sc.nextInt();
                             System.out.println("Le livre " + tmpOnlineBook.getTitle() + " a été ajouté à la liste des livres !");
 
                             break;
@@ -284,7 +298,7 @@ public class App {
                     for (Person p : myLibrary.getPeople()) {
                         if (p.getBooks().size() > 0) nbrBorrowingMembers++;
                     }
-
+                    choixMenu = sc.nextInt();
                     System.out.println("Nombre de livres : " + nbrBooks + " (Livres electroniques : " + nbrOnlineBooks + "/ Romans Graphiques : " + nbrGraphicNovels + ") / Nombre de membres : " + nbrMembers + "( Emprunteurs : " + nbrBorrowingMembers + ")");
                     System.out.println("Nombre de livres empruntés " + nbrBorrowedBooks);
                     System.out.println("Nombre de livres en retard : " + nbrLateBooks);
