@@ -13,11 +13,19 @@ public class MyLibrary implements DaoLibrary {
 	private String name;
 	private ArrayList<Book> books;
 	private ArrayList<Person> people;
-
+    
+	public MyLibrary() {}
+	
 	public MyLibrary(String name) {
 		this.name = name;
 		this.books = new ArrayList<Book>();
 		this.people = new ArrayList<Person>();
+	}
+	
+	public MyLibrary(String name,ArrayList<Book> books,ArrayList<Person> people ) {
+		this.name = name;
+		this.books = books;
+		this.people = people;
 	}
 
 	public String getName() {
