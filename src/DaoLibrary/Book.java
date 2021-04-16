@@ -94,7 +94,7 @@ public class Book {
 	}
 
 
-	public void setRentalPrice(int rentalPrice) {
+	public void setRentalPrice(double rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
 

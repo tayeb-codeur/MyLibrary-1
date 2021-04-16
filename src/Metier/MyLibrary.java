@@ -3,6 +3,7 @@ package Metier;
 import DaoLibrary.Book;
 import DaoLibrary.DaoLibrary;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -52,14 +53,48 @@ public class MyLibrary implements DaoLibrary {
 				+ (people != null ? people.subList(0, Math.min(people.size(), maxLen)) : null);
 	}
 
-	public void addBook(Book book) {
-		this.books.add(book);
+	public boolean addBook(Book book) {
+		return this.books.add(book);
 	}
-
-	public void addPerson(Person person) {
-		this.people.add(person);
+	
+	public boolean removeBook(Book book) {
+		return this.books.remove(book);
+		}
+	
+	public void editeBook(Book book,int totalPage, Person borrower, int loanPeriod, double rentalPrice,
+			LocalDate borrowingDate, String language) {
+		
+		book.setTotalPage(totalPage);
+		book.setLoanPeriod(loanPeriod);
+		book.setRentalPrice(rentalPrice);
+		book.setBorrower(borrower);
+		book.setLanguage(language);
+		book.setBorrowingDate(borrowingDate);
 	}
+	
+	public void displayBooks() {
+		System.out.println(books);
+	}
+	
 
+	public boolean addPerson(Person person) {
+		return this.people.add(person);
+	}
+	
+	public boolean removePerson(Person person) {
+		return this.people.remove(person);
+	}
+	
+	public void editePerson(Person person,String name, int maxBooks) {
+		person.setName(name);
+		person.setMaxBooks(maxBooks);
+		
+	}
+	
+	public void displayPersons() {
+		System.out.println(people);
+	}
+	
 	public int printBooks() {
 		int cpt = 0;
 

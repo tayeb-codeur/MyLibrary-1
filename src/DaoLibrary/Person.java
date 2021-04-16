@@ -44,7 +44,7 @@ public class Person {
 	}
 
 
-	public void setMaxBooks(byte maxBooks) {
+	public void setMaxBooks(int maxBooks) {
 		this.maxBooks = maxBooks;
 	}
 
