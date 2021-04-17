@@ -39,7 +39,7 @@ public interface DaoLibrary {
 					// Lire une ligne du fichier
 					while ((ligne = br.readLine()) != null) {
 						// "a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20"
-						// split : divise  ";" --->séparteur  
+						// split : divise ";" --->séparteur
 						data = ligne.split(";");
 						Person p = new Person(UUID.fromString(data[0]), data[1]);
 
@@ -89,10 +89,9 @@ public interface DaoLibrary {
 					while ((ligne = br.readLine()) != null) {
 
 						data = ligne.split(";");
-						
+
 						Book b = new Book(data[0], data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]),
 								Integer.parseInt(data[4]), data[5]);
-
 
 						// ajouter ce Book dans books
 						books.add(b);
@@ -158,8 +157,8 @@ public interface DaoLibrary {
 				bw = new BufferedWriter(fw);
 
 				for (Book b : books) {
-					bw.write(b.getTitle() + ";" + b.getAuthor() + ";" + b.getTotalPage() + ";" + b.getLoanPeriod()
-							+ ";" + b.getRentalPrice() + ";" + b.getLanguage());
+					bw.write(b.getTitle() + ";" + b.getAuthor() + ";" + b.getTotalPage() + ";" + b.getLoanPeriod() + ";"
+							+ b.getRentalPrice() + ";" + b.getLanguage());
 					bw.newLine();
 				}
 
