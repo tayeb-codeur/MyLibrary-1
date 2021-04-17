@@ -76,17 +76,16 @@ public class MyLibrary implements DaoLibrary {
 	public void displayBooks() {
 		System.out.println(books);
 	}
-	//Rechercher les livres selon titre et l'auteur
-	public ArrayList<Book> findBooks( String title, String author){
+
+	// Rechercher les livres selon titre et l'auteur
+	public ArrayList<Book> findBooks(String title, String author) {
 		ArrayList<Book> tmpBooks = null;
-		for(int i = 0; i<books.size(); ++i) {
-			if(books.get(i).getTitle().equals(title) &&
-					books.get(i).getAuthor().equals(author) )
+		for (int i = 0; i < books.size(); ++i) {
+			if (books.get(i).getTitle().equals(title) && books.get(i).getAuthor().equals(author))
 				tmpBooks.add(books.get(i));
 		}
 		return tmpBooks;
 	}
-	
 
 	public boolean addPerson(Person person) {
 		return this.people.add(person);
@@ -100,20 +99,20 @@ public class MyLibrary implements DaoLibrary {
 		person.setName(name);
 		person.setMaxBooks(maxBooks);
 	}
-
+ 
 	public void displayPersons() {
 		System.out.println(people);
 	}
-	
-	//Rechercher des membres selon nom 
-		public ArrayList<Person> findPeople(String name){
-			ArrayList<Person> tmpPersons = null;
-			for(int i = 0; i<people.size(); ++i) {
-				if(people.get(i).getName().equals(name)  )
-					tmpPersons.add(people.get(i));
-			}
-			return tmpPersons;
+
+	// Rechercher des membres selon nom
+	public ArrayList<Person> findPeople(String name) {
+		ArrayList<Person> tmpPersons = null;
+		for (int i = 0; i < people.size(); ++i) {
+			if (people.get(i).getName().equals(name))
+				tmpPersons.add(people.get(i));
 		}
+		return tmpPersons;
+	}
 
 	public int printBooks() {
 		int cpt = 0;
@@ -135,7 +134,7 @@ public class MyLibrary implements DaoLibrary {
 		while (itp.hasNext()) {
 			Person p = itp.next();
 
-			System.out.println(++cpt + ": " + p.getName());
+			System.out.println(++cpt + " : " + p.getName());
 		}
 		return cpt;
 	}

@@ -42,7 +42,7 @@ public class Book {
 		this.totalPage = totalPage;
 		this.borrower = borrower;
 		this.loanPeriod = loanPeriod;
-		this.rentalPrice = rentalPrice;
+		this.rentalPrice = rentalPrice; 
 		this.borrowingDate = borrowingDate;
 		this.language = language;
 
