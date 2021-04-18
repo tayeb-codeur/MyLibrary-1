@@ -29,6 +29,7 @@ public class MyLibrary implements DaoLibrary {
 		this.books = books;
 		this.people = people;
 	}
+	// les methodes
 
 	public String getName() {
 		return name;
@@ -79,7 +80,7 @@ public class MyLibrary implements DaoLibrary {
 
 	// Rechercher les livres selon titre et l'auteur
 	public ArrayList<Book> findBooks(String title, String author) {
-		ArrayList<Book> tmpBooks = null;
+		ArrayList<Book> tmpBooks = new ArrayList<>();
 		for (int i = 0; i < books.size(); ++i) {
 			if (books.get(i).getTitle().equals(title) && books.get(i).getAuthor().equals(author))
 				tmpBooks.add(books.get(i));
@@ -99,16 +100,17 @@ public class MyLibrary implements DaoLibrary {
 		person.setName(name);
 		person.setMaxBooks(maxBooks);
 	}
- 
+
 	public void displayPersons() {
 		System.out.println(people);
 	}
 
 	// Rechercher des membres selon nom
 	public ArrayList<Person> findPeople(String name) {
-		ArrayList<Person> tmpPersons = null;
+		ArrayList<Person> tmpPersons = new ArrayList<Person>();
 		for (int i = 0; i < people.size(); ++i) {
 			if (people.get(i).getName().equals(name))
+
 				tmpPersons.add(people.get(i));
 		}
 		return tmpPersons;

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class OnlineBook extends Book {
 	private int maxPeople;
 	private String contenu;
-	
+
 	public OnlineBook() {
 		super();
 	}
@@ -32,6 +32,6 @@ public class OnlineBook extends Book {
 
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
-	}	
-	
-} 
+	}
+
+}

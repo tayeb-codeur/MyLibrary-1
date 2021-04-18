@@ -10,29 +10,39 @@ import java.util.UUID;
 
 public class App {
 
+	public void loadLibrary(MyLibrary myLibrary) {
+		System.out.println("Chargement de la bibliothèque...");
+		/*
+		 * System.out.println(myLibrary.loadBooks("data/books.csv",
+		 * myLibrary.getBooks()) + " livres chargés...");
+		 * System.out.println(myLibrary.loadMembers("data/members.csv",
+		 * myLibrary.getPeople()) + " membres chargés...");
+		 */
+		System.out.println(myLibrary.toString());
+	}
+
 	public void menuPrincipal() {
 		System.out.println("\t\t\t\t\t\t***** MENU PRINCIPAL *****");
 		System.out.println("1. Ajouter un membre - 2. Ajouter un livre - 3. Emprunter un livre - "
 				+ " 4. Voir les statistiques - 0. Quitter le programme");
 		System.out.println(
-				"*****************************************************************************************************");
+				"*************************************************************************************************************************");
 	}
 
 	public void menuLivre() {
+		System.out.println(
+				"*************************************************************************************************************************");
 		System.out.println("===== NOUVEAU LIVRE =====");
 		System.out.println("1. Livre standard");
 		System.out.println("2. Livre Numérique");
 		System.out.println("3. Roman Graphique");
 		System.out.println(
-				"************************************************************************************************************");
+				"*************************************************************************************************************************");
 	}
 
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		MyLibrary myLibrary = new MyLibrary("BiblioICC");
-		System.out.println("Chargement de la bibliothèque...");
-		System.out.println(myLibrary.loadBooks("data/books.csv", myLibrary.getBooks()) + " livres chargés...");
-		System.out.println(myLibrary.loadMembers("data/members.csv", myLibrary.getPeople()) + " membres chargés...");
 
 		// variables pour le choix entre par utilisateur
 		int choixMenu = 0;
@@ -41,6 +51,7 @@ public class App {
 		int choixLivre = 0;
 
 		App app = new App();
+		app.loadLibrary(myLibrary);
 		app.menuPrincipal();
 
 		// while (choixMenu != 0) {
@@ -52,13 +63,16 @@ public class App {
 		}
 
 		switch (choixMenu) {
+		////////////////////////////////////////////// Ajout un
+		////////////////////////////////////////////// membre//////////////////////////////////////////////////////
 		case 1:
+			System.out.println("-----------------------------------------------------------------------------");
 			System.out.println("===== NOUVEAU MEMBRE =====");
 			System.out.print("Entrer le nom du membre : ");
 			nouveauMembre = sc.next();
 			// UUID.randomUUID() generé un identifiant automatique
 			Person tmpPerson = new Person(UUID.randomUUID(), nouveauMembre);
-			System.out.println("--------------------------------------------------");
+
 			System.out.print("Nombre de livres maximum que le membre peut emprunter : ");
 			try {
 				nbMax = sc.nextInt();
@@ -68,17 +82,24 @@ public class App {
 			tmpPerson.setMaxBooks(nbMax);
 			myLibrary.addPerson(tmpPerson);
 			// System.out.print("\033\143");
-			/*
-			 * System.out.println("le nom du nouveau membre : " + tmpPerson.getName() +
-			 * " , le membre peut enprunté : " + tmpPerson.getMaxBooks() + " livres ");
-			 * System.out.println();
-			 */
+			app.loadLibrary(myLibrary);
+			System.out.println();
 			System.out.println(myLibrary.printMembers());
-			System.out.println("*******************************************************************************");
+			System.out.println();
+			// ajout  des methode  finPeople dans la class MyLibrary et edité la class App pour tester toutes les methodes "
+			System.out.print(" Entrer le nom  de  la personne a rechercher : ");
+			String personRecherche = sc.next();
+			if (!myLibrary.findPeople(personRecherche).isEmpty())
+				System.out.println(personRecherche + " existe dans la liste ");
+			else
+				System.out.println(" la recherche n'existe pas ");
+
+			System.out.println("*****************************************************************************");
 			break;
+
 		case 2:
 			app.menuLivre();
-			///////////////////////////////////////////////////////
+
 			try {
 				choixLivre = sc.nextInt();
 			} catch (Exception e) {
@@ -86,12 +107,13 @@ public class App {
 			}
 
 			switch (choixLivre) {
+			////////////////////////////////////////////// Ajout un	livre//////////////////////////////////////////////////////
 			case 1:
+
 				Book tmpBook = new Book();
 
 				System.out.print("Entrer le titre du livre : ");
 				tmpBook.setTitle(sc.next());
-
 				System.out.print("Entrer le nom de l'auteur : ");
 				tmpBook.setAuthor(sc.next());
 
@@ -122,9 +144,8 @@ public class App {
 				}
 
 				myLibrary.addBook(tmpBook);
-				// System.out.println("Le livre \' " + tmpBook.getTitle().toUpperCase() + " \' a
-				// été ajouté à la liste des livres !");
 				System.out.println(myLibrary.printBooks());
+
 				break;
 			case 2: //
 				OnlineBook tmpOnlineBook = new OnlineBook();
@@ -174,59 +195,67 @@ public class App {
 				myLibrary.addBook(tmpOnlineBook);
 				System.out.println(myLibrary.printBooks());
 				break;
-			
-			  case 3: 
-				  GraphicNovel tmpGraphicNovel = new GraphicNovel();
-			  
-				  System.out.print("Entrer le titre du livre : ");
-				  tmpGraphicNovel.setTitle(sc.next());
 
-					System.out.print("Entrer le nom de l'auteur : ");
-					tmpGraphicNovel.setAuthor(sc.next());
+			case 3:
+				GraphicNovel tmpGraphicNovel = new GraphicNovel();
 
-					System.out.print("Entrer la langue du livre : ");
-					tmpGraphicNovel.setLanguage(sc.next());
+				System.out.print("Entrer le titre du livre : ");
+				tmpGraphicNovel.setTitle(sc.next());
 
-					System.out.print("Entrer le nombre de page du livre : ");
-					try {
-						tmpGraphicNovel.setTotalPage(sc.nextInt());
-					} catch (Exception e) {
-						System.out.println("Veuillez entrer une valeur valide !");
-					}
+				System.out.print("Entrer le nom de l'auteur : ");
+				tmpGraphicNovel.setAuthor(sc.next());
 
-					System.out.print("Entrer la durée d'un emprunt de ce livre : ");
-					try {
-						tmpGraphicNovel.setLoanPeriod(sc.nextInt());
-					} catch (Exception e) {
-						System.out.print("Veuillez entrer une valeur valide !");
+				System.out.print("Entrer la langue du livre : ");
+				tmpGraphicNovel.setLanguage(sc.next());
 
-					}
+				System.out.print("Entrer le nombre de page du livre : ");
+				try {
+					tmpGraphicNovel.setTotalPage(sc.nextInt());
+				} catch (Exception e) {
+					System.out.println("Veuillez entrer une valeur valide !");
+				}
 
-					System.out.print("Entrer le prix de l'emprunt de ce livre : ");
+				System.out.print("Entrer la durée d'un emprunt de ce livre : ");
+				try {
+					tmpGraphicNovel.setLoanPeriod(sc.nextInt());
+				} catch (Exception e) {
+					System.out.print("Veuillez entrer une valeur valide !");
 
-					try {
-						tmpGraphicNovel.setRentalPrice(sc.nextDouble());
-					} catch (Exception e) {
-						System.out.println("Veuillez entrer une valeur valide !");
-					}
+				}
 
-					System.out.print("Entrer le nombre de personnes qui peuvent enprunter : ");
-					try {
-						tmpGraphicNovel.setCartoonist(sc.next());
-					} catch (Exception e) {
-						System.out.print("Veuillez entrer une valeur valide !");
+				System.out.print("Entrer le prix de l'emprunt de ce livre : ");
 
-					}
-					System.out.print("Description du livre : ");
-					tmpGraphicNovel.setColor(sc.next());
+				try {
+					tmpGraphicNovel.setRentalPrice(sc.nextDouble());
+				} catch (Exception e) {
+					System.out.println("Veuillez entrer une valeur valide !");
+				}
 
-					myLibrary.addBook(tmpGraphicNovel);
-					System.out.println(myLibrary.printBooks());
-			  
-			  break;
-			 
-			default:
+				System.out.print("Entrer le nombre de personnes qui peuvent enprunter : ");
+				try {
+					tmpGraphicNovel.setCartoonist(sc.next());
+				} catch (Exception e) {
+					System.out.print("Veuillez entrer une valeur valide !");
+
+				}
+				System.out.print("Description du livre : ");
+				tmpGraphicNovel.setColor(sc.nextLine());
+
+				myLibrary.addBook(tmpGraphicNovel);
+				System.out.println(myLibrary.printBooks());
+
+				break;
+
 			}
+			// ajout  des methode finBooks dans la class MyLibrary et edité la class App pour tester toutes les methodes "
+			System.out.print(" Entrer le nom  du livre a rechercher : ");
+			String bookRecherche = sc.next();
+			System.out.print(" Entrer le nom de l'auteur du livre a rechercher : ");
+			String authorRecherche = sc.next();
+			if (!myLibrary.findBooks(bookRecherche, authorRecherche).isEmpty())
+				System.out.println(" Le livre " + bookRecherche + " existe dans la liste ");
+			else
+				System.out.println(" la recherche n'existe pas ");
 
 			break;
 		/*

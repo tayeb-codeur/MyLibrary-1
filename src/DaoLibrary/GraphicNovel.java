@@ -2,7 +2,7 @@ package DaoLibrary;
 
 import java.time.LocalDate;
 
-public class GraphicNovel extends Book { 
+public class GraphicNovel extends Book {
 	private String cartoonist;
 	private String color;
 
@@ -32,6 +32,5 @@ public class GraphicNovel extends Book {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	
+
 }
