@@ -78,6 +78,26 @@ public class MyLibrary implements DaoLibrary {
 		System.out.println(books);
 	}
 
+	// Rechercher les livres selon titre
+	public ArrayList<Book> findBooksByTitle(String title) {
+		ArrayList<Book> tmpBooks = new ArrayList<>();
+		for (int i = 0; i < books.size(); ++i) {
+			if (books.get(i).getTitle().equals(title))
+				tmpBooks.add(books.get(i));
+		}
+		return tmpBooks;
+	}
+
+	// Rechercher les livres selonl'auteur
+	public ArrayList<Book> findBooksByAuthor(String author) {
+		ArrayList<Book> tmpBooks = new ArrayList<>();
+		for (int i = 0; i < books.size(); ++i) {
+			if (books.get(i).getAuthor().equals(author))
+				tmpBooks.add(books.get(i));
+		}
+		return tmpBooks;
+	}
+
 	// Rechercher les livres selon titre et l'auteur
 	public ArrayList<Book> findBooks(String title, String author) {
 		ArrayList<Book> tmpBooks = new ArrayList<>();
@@ -106,14 +126,20 @@ public class MyLibrary implements DaoLibrary {
 	}
 
 	// Rechercher des membres selon nom
-	public ArrayList<Person> findPeople(String name) {
-		ArrayList<Person> tmpPersons = new ArrayList<Person>();
+	// la methode public findPeople de type Person qui un parametre String
+	public Person findPeople(String name) {
+		Person tmpPersons = new Person();
 		for (int i = 0; i < people.size(); ++i) {
 			if (people.get(i).getName().equals(name))
-
-				tmpPersons.add(people.get(i));
+				tmpPersons = people.get(i);
 		}
 		return tmpPersons;
+	}
+
+	// Emprunt des livres
+	public void borrowBook(Book book, Person borrower, LocalDate borrowingDate) {
+		book.setBorrower(borrower);
+		book.setBorrowingDate(borrowingDate);
 	}
 
 	public int printBooks() {

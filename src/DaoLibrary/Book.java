@@ -15,13 +15,6 @@ public class Book {
 
 	// Constructeur sans parametre
 	public Book() {
-		this.title = "Unknown Title";
-		this.author = "Unknown Author";
-		this.borrower = null;
-		this.totalPage = 0;
-		this.loanPeriod = 0;
-		this.rentalPrice = 0;
-		this.language = "Unknown language";
 	}
 
 	// Constructeur surcharge avec parametre
